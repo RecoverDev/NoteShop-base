@@ -33,12 +33,6 @@ public class OrderController {
     public ResponseEntity<List<Order>> getOrders() {
         return new ResponseEntity<>(orders.getOrders(), HttpStatus.OK);
     }
-
-    @GetMapping("/nameorders/{name}")
-    public ResponseEntity<List<Order>> getOrderByName(@PathVariable(name = "name") String name) {
-        List<Order> result = orders.getOrdersByName(name);
-        return result.isEmpty() ? new ResponseEntity<>(HttpStatus.NOT_FOUND) : new ResponseEntity<>(result,HttpStatus.OK);
-    }
     
     @GetMapping("/userorders/{id}")
     public ResponseEntity<List<Order>> getOrderByUser(@PathVariable(name = "id") Integer id) {
