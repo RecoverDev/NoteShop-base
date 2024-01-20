@@ -30,4 +30,9 @@ public interface IUsers {
      * проверка наличия пользователя
      */
     boolean testUser(String login, String pass);
+
+    /**
+     * возвращает пользователя по логину и паролю
+     */
+    User getUserByLogin(String log, String pass);
 }

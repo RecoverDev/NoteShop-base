@@ -1,6 +1,7 @@
 package com.noteshop.base.services;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.stereotype.Component;
 
@@ -50,5 +51,12 @@ public class UsersImplementation implements IUsers {
     public boolean testUser(String login, String pass){
         return getListUsers().stream().filter(u -> u.getLogin().equals(login) & u.getPassword().equals(pass)).count() > 0;
     }
+
+    @Override
+    public User getUserByLogin(String log, String pass){
+        List<User> result =  userRepository.findByLoginAndPassword(log,pass);
+        return result.size() > 0 ? result.get(0) : null;
+    }
+
 
 }

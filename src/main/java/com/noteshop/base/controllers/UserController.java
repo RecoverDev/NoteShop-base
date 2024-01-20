@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 
+
 @RestController
 @RequestMapping("/base")
 public class UserController {
@@ -56,5 +57,12 @@ public class UserController {
     public ResponseEntity<HttpStatus> isPresent(@PathVariable(name = "log") String log, @PathVariable(name = "pass") String pass){
         return users.testUser(log,pass) ? new ResponseEntity<>(HttpStatus.OK) : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
+
+    @GetMapping("/getusetbylogin/{login}/{pass}")
+    public ResponseEntity<User> getuserbylogin(@PathVariable(name = "login") String login, @PathVariable(name = "pass") String pass) {
+        User user =  users.getUserByLogin(login, pass);
+        return user == null ? new ResponseEntity<>(HttpStatus.NOT_FOUND) : new ResponseEntity<>(user, HttpStatus.OK);
+    }
+    
 
 }
