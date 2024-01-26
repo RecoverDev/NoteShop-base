@@ -11,7 +11,8 @@ public class Notebook {
     @Id
     @Column(columnDefinition = "serial")
     private Integer id;
-    private Integer id_manufacturer;
+    @ManyToOne
+    private Manufacturer manufacturer;
     private String model;
     private double screen;
     private int RAM;
